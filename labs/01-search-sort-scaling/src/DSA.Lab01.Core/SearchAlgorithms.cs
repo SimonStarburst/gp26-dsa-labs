@@ -30,8 +30,30 @@ namespace DSA.Lab01
                 throw new ArgumentNullException(nameof(sortedValues));
             }
 
-            int highIndex;
-            int lowIndex;
+            int highIndex = sortedValues.Length - 1;
+            int mid;
+            int lowIndex = 0;
+
+            while (lowIndex <= highIndex)
+            {
+                mid = (lowIndex + highIndex) /2;
+
+                // If target is exactly the mid-point of the array, return with the mid-point as the result
+                if (target == sortedValues[mid])
+                {
+                    return mid;
+                }
+                
+                else if (target < sortedValues[mid])
+                {
+                    highIndex = mid - 1;
+                }
+
+                else
+                {
+                    lowIndex = mid + 1;
+                }
+            }
 
 
             // TODO: Implement binary search.
