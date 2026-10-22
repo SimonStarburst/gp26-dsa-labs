@@ -75,6 +75,17 @@ namespace DSA.Lab01.Tests
 
             Assert.That(result, Is.EqualTo(-1));
         }
+        // Test to see if there is an array or not
+        [Test]
+        public void BinarySearch_CheckIfArrayIsMissing()
+        {
+            int[] values = { };
+
+            int? result = SearchAlgorithms.BinarySearch(values, 7);
+
+            Assert.That(result, Is.Null);
+        }
+
     }
 
     [TestFixture]
