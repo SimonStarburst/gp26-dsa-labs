@@ -69,6 +69,16 @@ public sealed class PlayerCollectionTests
         Assert.That(contains, Is.False);
     }
 
+    [Test]
+    public void ContainsName_ReturnsNullForEmptyCollection()
+    {
+        PlayerCollection collection = CreateCollection();
+
+        bool contains = collection.ContainsName("");
+
+        Assert.That(contains, Is.Null);
+    }
+
     private static PlayerCollection CreateCollection()
     {
         return new PlayerCollection(new List<Player>
