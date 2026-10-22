@@ -11,6 +11,7 @@ namespace DSA.Lab01
                 throw new ArgumentNullException(nameof(values));
             }
 
+            
             for (int i = 0; i < values.Length; ++i)
             {
                 if (values[i] == target)
@@ -28,6 +29,10 @@ namespace DSA.Lab01
             {
                 throw new ArgumentNullException(nameof(sortedValues));
             }
+
+            int highIndex;
+            int lowIndex;
+
 
             // TODO: Implement binary search.
             // The input to this method is guaranteed to be sorted in ascending order.
