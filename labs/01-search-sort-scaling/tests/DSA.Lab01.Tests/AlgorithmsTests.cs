@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Runtime.CompilerServices;
 using DSA.Lab01;
 using NUnit.Framework;
 
@@ -75,16 +77,32 @@ namespace DSA.Lab01.Tests
 
             Assert.That(result, Is.EqualTo(-1));
         }
-        // Test to see if there is an array or not
+
+        // Test to see if there's only 1 element in the array
+
         [Test]
-        public void BinarySearch_CheckIfArrayIsMissing()
+        public void BinarySearch_CheckIfOnlyOneElement()
+        {
+            int[] values = { 1 };
+
+            int result = SearchAlgorithms.BinarySearch(values, 1);
+
+            Assert.That(values.Count, Is.EqualTo(1));
+        }
+
+        //Test to see if the array is empty
+
+       [Test]
+        public void BinarySearch_CheckForEmptyArray()
         {
             int[] values = { };
 
-            int? result = SearchAlgorithms.BinarySearch(values, 7);
+            int result = SearchAlgorithms.BinarySearch(values, 999);
 
-            Assert.That(result, Is.Null);
+            Assert.That(values, Is.Empty);
         }
+
+
 
     }
 
