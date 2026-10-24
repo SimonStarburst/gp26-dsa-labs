@@ -87,7 +87,7 @@ namespace DSA.Lab01.Tests
 
             int result = SearchAlgorithms.BinarySearch(values, 1);
 
-            Assert.That(values.Count, Is.EqualTo(1));
+            Assert.That(values.Length, Is.EqualTo(1));
         }
 
         //Test to see if the array is empty
