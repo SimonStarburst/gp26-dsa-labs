@@ -40,6 +40,7 @@ namespace DSA.Lab02
             {
                 throw new InvalidOperationException("The stack is empty.");
             }
+
             return _items[_count - 1];
         }
 
@@ -54,7 +55,7 @@ namespace DSA.Lab02
             _count--;
 
             // Since we don't know the type, we write T to signal it's generic
-            T item _items[_count];
+            T item = _items[_count];
             _items[_count] = default!;
 
             return item;
