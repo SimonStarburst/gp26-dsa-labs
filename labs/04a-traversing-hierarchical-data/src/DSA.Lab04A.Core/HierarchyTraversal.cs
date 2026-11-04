@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 
 namespace DSA.Lab04A
 {
@@ -17,9 +18,14 @@ namespace DSA.Lab04A
             {
                 throw new ArgumentNullException(nameof(root));
             }
-
             // TODO: count this node, then count every child subtree.
-            throw new NotImplementedException();
+
+            int count = 1;
+            foreach (HierarchyNode<T> child in root.Children)
+            {
+                count += CountNodes(child);                
+            }
+            return count;
         }
 
         public static bool Contains<T>(HierarchyNode<T> root, T target)
@@ -30,7 +36,21 @@ namespace DSA.Lab04A
             }
 
             // TODO: compare the current node, then search child subtrees.
-            throw new NotImplementedException();
+
+            if (EqualityComparer<T>.Default.Equals(root.Value, target))
+            {
+                return true;
+            }
+
+            foreach (HierarchyNode<T> child in root.Children)
+            {
+                if (Contains(child, target))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public static IReadOnlyList<T> DepthFirstPreOrder<T>(HierarchyNode<T> root)
@@ -54,7 +74,15 @@ namespace DSA.Lab04A
 
             // Depth is measured in edges from the root.
             // A single-node tree therefore has max depth 0.
-            throw new NotImplementedException();
+
+            int deepestChild = -1;
+            foreach (HierarchyNode<T> child in root.Children)
+            {
+                deepestChild = Math.Max(deepestChild, MaxDepth(child));
+            }
+
+            return deepestChild + 1;
+
         }
     }
 }
