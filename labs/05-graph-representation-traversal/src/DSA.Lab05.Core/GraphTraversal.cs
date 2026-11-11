@@ -16,26 +16,58 @@ namespace DSA.Lab05
             AdjacencyGraph graph,
             string start)
         {
-            Queue<string> frontier = new Queue<string>();
-            HashSet<string> visited = new HashSet<string>();
+            var result = new List<string>();
+            var frontier = new Queue<string>();
+            var visited = new HashSet<string>();
 
-            frontier.Enqueue(start);
             visited.Add(start);
+            frontier.Enqueue(start);
 
             while (frontier.Count > 0)
             {
-                frontier.Dequeue();
-                
+                string current = frontier.Dequeue();
+                result.Add(current);
+
+                foreach (string neighbor in graph.GetNeighbors(current))
+                {
+                    if (visited.Add(neighbor))
+                    {
+                        frontier.Enqueue(neighbor);
+                    }
+                }                
             }
-            
-            throw new NotImplementedException();
+
+            return result;
         }
 
         public static IReadOnlyList<string> DepthFirstOrder(
             AdjacencyGraph graph,
             string start)
         {
-            throw new NotImplementedException();
+            var result = new List<string>();
+            var frontier = new Stack<string>();
+            var visited = new HashSet<string>();
+
+            visited.Add(start);
+            frontier.Push(start);
+
+            while (frontier.Count > 0)
+            {
+                string current = frontier.Pop();
+                result.Add(current);
+
+                IReadOnlyList<string> neighbors = graph.GetNeighbors(current);
+
+                for (int i = neighbors.Count - 1; i >= 0; --i)
+                {
+                    string neighbor = neighbors[i];
+                    if (visited.Add(neighbor))
+                    {
+                        frontier.Push(neighbor);
+                    }
+                }
+            }
+            return result;
         }
 
         public static bool IsReachableBfs(
