@@ -31,6 +31,11 @@ namespace DSA.Lab06
 
             int expandedNodes = 0;
 
+            while (frontier.Count > 0)
+            {
+
+            }
+
             // TODO Lab 6A:
             // 1. Repeatedly remove the smallest-priority frontier candidate.
             // 2. Ignore stale entries when a cheaper cost is already known.
